@@ -1,0 +1,25 @@
+# Corpus -- ~6 MB of filings. The fetch script reproduces it.
+data/raw/
+
+# Derived data. All reproducible from data/raw/ via clean.py and chunk.py;
+# committing it would be ~9 MB of JSONL that goes stale the moment either
+# script changes.
+data/clean/
+data/chunks/
+
+# Vector stores
+data/chroma/
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+
+# Results are committed (they are the deliverable), but scratch runs are not
+reports/scratch/

@@ -1,0 +1,286 @@
+# Evaluation question set — written BEFORE retrieval was built.
+#
+# This ordering is deliberate (handoff §6): writing questions after seeing what
+# the pipeline retrieves well is how an eval set gets tuned toward the system's
+# existing strengths.
+#
+# Every expected figure below was verified directly against the filing markup by
+# src/find_restatements.py, not recalled. Where two filings disagree, BOTH values
+# are recorded with their source — that disagreement is the object of study, not
+# an error to resolve.
+#
+# Count: 18. Project 2 does not specify a number. 18 is what it takes to cover
+# six categories with enough per-category items (3-4) for a per-category score to
+# mean anything; aggregate scores hide where systems break (§4). Fewer than ~3 in
+# a category makes its score a coin flip.
+#
+# Fields:
+#   id            stable identifier, used as the join key in results
+#   category      numeric | temporal | trend | restatement | split | unanswerable
+#   question      asked verbatim, as a user would phrase it
+#   expected      the figure(s) or claim; units as stated in the filing
+#   unit          millions_usd | usd_per_share | millions_shares | percent | none
+#   source        which filing(s) legitimately answer it
+#   must_cite     retrieval must surface these to count as grounded
+#   notes         why this question exists / what it is designed to break
+
+meta:
+  company: NVIDIA Corporation
+  ticker: NVDA
+  cik: "0001045810"
+  fiscal_years: [2024, 2025, 2026]
+  currency_note: >
+    All dollar figures are in millions except per-share amounts. NVIDIA's fiscal
+    year ends in late January, so FY2026 covers approximately calendar 2025.
+  calendar_policy: >
+    Questions phrased in calendar terms ("in 2025") are treated as referring to
+    the fiscal year that MOSTLY overlaps that calendar year — "2025" means
+    FY2026. The system must disambiguate rather than answer literally; see
+    q_temporal_03, which tests exactly this.
+
+questions:
+
+  # ---- numeric: answer is a single figure in a table -------------------------
+  - id: q_numeric_01
+    category: numeric
+    question: What was NVIDIA's Data Center revenue in fiscal year 2026?
+    expected: 193737
+    unit: millions_usd
+    source: [FY2026]
+    must_cite: ["FY2026", "Revenue by End Market"]
+    notes: >
+      Baseline numeric lookup. Table row is
+      ['Data Center', '$', '193,737', '$', '115,186', '$', '47,525'] — the
+      currency-symbol-in-own-cell case from §5.2. If the cleaner mis-aligns
+      columns this returns 115,186 (FY2025) instead.
+
+  - id: q_numeric_02
+    category: numeric
+    question: What was total revenue for fiscal 2026?
+    expected: 215938
+    unit: millions_usd
+    source: [FY2026]
+    must_cite: ["FY2026"]
+    notes: Total row of the same table; tests that totals are not confused with segments.
+
+  - id: q_numeric_03
+    category: numeric
+    question: How much revenue came from Networking in fiscal 2026?
+    expected: 31376
+    unit: millions_usd
+    source: [FY2026]
+    must_cite: ["FY2026"]
+    notes: >
+      Networking is a sub-line under Compute within Data Center. Tests whether
+      nested table hierarchy survives chunking.
+
+  - id: q_numeric_04
+    category: numeric
+    question: What was NVIDIA's Gaming revenue in fiscal 2025?
+    expected: 11350
+    unit: millions_usd
+    source: [FY2026, FY2025]
+    must_cite: ["Revenue by End Market"]
+    notes: >
+      Stable across filings (11,350 in both), so a correct answer is achievable
+      from either. Contrast with the restatement items — this is the control.
+
+  # ---- temporal: requires the right filing, correctly labelled ---------------
+  - id: q_temporal_01
+    category: temporal
+    question: How much did Data Center revenue grow from fiscal 2025 to fiscal 2026?
+    expected: "193737 - 115186 = 78551 (68.2% growth)"
+    unit: millions_usd
+    source: [FY2026]
+    must_cite: ["FY2026"]
+    notes: >
+      Both figures live in one table in the FY2026 filing, so this is answerable
+      from a single chunk IF the table was held whole. A fixed-size splitter that
+      cuts mid-table makes this unanswerable — the core §4 control.
+
+  - id: q_temporal_02
+    category: temporal
+    question: What was total revenue in fiscal 2024?
+    expected: 60922
+    unit: millions_usd
+    source: [FY2026, FY2025, FY2024]
+    must_cite: ["FY2024"]
+    notes: >
+      Appears in all three filings identically. Tests period confusion directly:
+      every 10-K says "revenue increased" in near-identical language, so dense
+      retrieval must rely on metadata to pick the year.
+
+  - id: q_temporal_03
+    category: temporal
+    question: What was NVIDIA's revenue in 2025?
+    expected: >
+      Ambiguous — must disambiguate. Calendar 2025 corresponds mostly to FY2026
+      (215,938). FY2025 as labelled by NVIDIA is 130,497.
+    unit: millions_usd
+    source: [FY2026, FY2025]
+    must_cite: []
+    notes: >
+      The fiscal-calendar trap (§3). A bare figure with no statement of which
+      basis it used is scored WRONG even if the number is one of the two valid
+      ones. Tests the disambiguation policy declared in meta.calendar_policy.
+
+  # ---- trend: requires all three filings ------------------------------------
+  - id: q_trend_01
+    category: trend
+    question: Has NVIDIA's Data Center revenue growth accelerated or decelerated over the last three fiscal years?
+    expected: >
+      Decelerated in percentage terms: FY2024 47,525 -> FY2025 115,186 (+142%)
+      -> FY2026 193,737 (+68%). Absolute growth still increased
+      (67,661 then 78,551).
+    unit: millions_usd
+    source: [FY2026]
+    must_cite: ["FY2026"]
+    notes: >
+      All three years are in the FY2026 table, so this is single-chunk IF held
+      whole. The percentage-vs-absolute distinction is where generation tends to
+      overclaim — a system saying only "decelerated" is incomplete.
+
+  - id: q_trend_02
+    category: trend
+    question: How has NVIDIA's gross margin changed across fiscal 2024, 2025 and 2026?
+    expected: "Directional: improved FY2024 -> FY2025, roughly flat or slightly lower FY2026."
+    unit: percent
+    source: [FY2026, FY2025]
+    must_cite: []
+    notes: >
+      Gross margin appears as a % of revenue in one table and in dollars in
+      another. This is the UNIT_MISMATCH confounder (D6) as a live query: a
+      system that mixes the two bases produces nonsense like "margin was 44,301".
+
+  - id: q_trend_03
+    category: trend
+    question: Which end market has grown fastest over the three years covered?
+    expected: "Data Center — 47,525 -> 115,186 -> 193,737, far outpacing all others."
+    unit: millions_usd
+    source: [FY2026]
+    must_cite: ["FY2026"]
+    notes: Requires comparing all rows of a held-whole table, not just retrieving one.
+
+  # ---- restatement: same figure, two sources, genuinely different ------------
+  - id: q_restate_01
+    category: restatement
+    question: What were NVIDIA's United States revenues in fiscal 2025?
+    expected:
+      per_fy2026_filing: 77482
+      per_fy2025_filing: 61257
+    unit: millions_usd
+    source: [FY2026, FY2025]
+    must_cite: ["United States", "geographic"]
+    notes: >
+      THE headline restatement in the corpus (D4, corrected). NVIDIA changed the
+      basis of geographic revenue disaggregation between filings, and states the
+      change in the table caption itself:
+        FY2025 filing: "based upon the billing location of the customer"
+        FY2026 filing: "based upon the location of the customers' headquarters"
+      Same line item, same fiscal year, both correct as published, 1.26x apart
+      with a documented cause. A correct answer states a figure AND which filing
+      (and therefore which basis) it came from. An unqualified number is scored
+      wrong regardless of which of the two it is.
+
+  - id: q_restate_02
+    category: restatement
+    question: How much revenue did NVIDIA attribute to China, including Hong Kong, in fiscal 2025?
+    expected:
+      per_fy2026_filing: 25048
+      per_fy2025_filing: 17108
+    unit: millions_usd
+    source: [FY2026, FY2025]
+    must_cite: ["China", "geographic"]
+    notes: >
+      Same basis change, larger relative move (1.46x). Confirms the divergence is
+      systematic across the geographic table rather than a single-line anomaly —
+      US and China rise while 'Other' falls (4,367 vs 7,875), which is what a
+      billing-location → HQ-location reattribution looks like.
+
+  - id: q_restate_03
+    category: restatement
+    question: What was the total operating income by reportable segment for fiscal 2025?
+    expected:
+      per_fy2026_filing: 87960
+      per_fy2025_filing: 81453
+    unit: millions_usd
+    source: [FY2026, FY2025]
+    must_cite: ["Operating Income by Reportable Segments"]
+    notes: >
+      Label is the bare word 'Total' — only the table caption disambiguates it
+      (D3). Directly tests whether table_caption made it into the metadata.
+
+  - id: q_restate_04
+    category: restatement
+    question: What was the carrying value of patents and licensed technology at the end of fiscal 2025?
+    expected:
+      per_fy2026_filing: 230
+      per_fy2025_filing: 449
+    unit: millions_usd
+    source: [FY2026, FY2025]
+    must_cite: ["amortizable intangible assets"]
+    notes: Intangible-assets reclassification; a non-revenue restatement, so the finding is not revenue-specific.
+
+  # ---- split: same figure, 10x apart, both correct ---------------------------
+  - id: q_split_01
+    category: split
+    question: What was NVIDIA's basic earnings per share in fiscal 2024?
+    expected:
+      per_fy2025_and_fy2026_filings: 1.21
+      per_fy2024_filing: 12.05
+    unit: usd_per_share
+    source: [FY2026, FY2025, FY2024]
+    must_cite: []
+    notes: >
+      The 10-for-1 June 2024 split (D5). Exactly 10x, unambiguous, both correct.
+      A system answering "12.05" from the FY2024 filing is right about the number
+      and wrong about the basis — only a citation reveals which. Scored correct
+      only if the split basis or source filing is stated.
+
+  - id: q_split_02
+    category: split
+    question: What were NVIDIA's diluted weighted average shares outstanding in fiscal 2024?
+    expected:
+      per_fy2025_filing: 24940
+      per_fy2024_filing: 2494
+    unit: millions_shares
+    source: [FY2025, FY2024]
+    must_cite: []
+    notes: Share-count form of the same trap; confirms it is not confined to per-share figures.
+
+  # ---- unanswerable: tests the refusal path ---------------------------------
+  - id: q_unans_01
+    category: unanswerable
+    question: What is NVIDIA's projected Data Center revenue for fiscal year 2027?
+    expected: REFUSE
+    unit: none
+    source: []
+    must_cite: []
+    notes: >
+      Forward guidance is not in a 10-K. Highly retrievable-looking — the corpus
+      is full of Data Center revenue figures — so dense retrieval will return
+      confident, irrelevant chunks. Tests refusal under high retrieval
+      confidence, which is the hard case.
+
+  - id: q_unans_02
+    category: unanswerable
+    question: How much revenue did AMD report in fiscal 2025?
+    expected: REFUSE
+    unit: none
+    source: []
+    must_cite: []
+    notes: >
+      Out-of-corpus company. Single-company corpora make this easy, which is the
+      point of the contrast with the cross-company design rejected in §2.
+
+  - id: q_unans_03
+    category: unanswerable
+    question: What did NVIDIA's CEO earn in total compensation in fiscal 2026?
+    expected: REFUSE
+    unit: none
+    source: []
+    must_cite: []
+    notes: >
+      Executive compensation lives in the DEF 14A proxy, not the 10-K, though the
+      10-K incorporates parts of it by reference. Tests refusal on a plausible
+      adjacent-document question rather than an obviously absent one.

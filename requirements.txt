@@ -1,0 +1,33 @@
+# Corpus fetch
+requests>=2.32
+
+# Pipeline (Track 2: LangChain + LangGraph)
+langchain>=0.3
+langchain-community>=0.3
+langchain-openai>=0.2          # OpenAI-compatible client, pointed at Nebius
+langchain-text-splitters>=0.3
+langchain-experimental>=0.3    # SemanticChunker (note: package is sunset)
+langgraph>=0.2
+
+# Vector store + lexical retrieval
+chromadb>=0.5
+rank-bm25>=0.2.2               # BM25 arm of the hybrid retriever
+
+# Reranking (cross-encoder, runs locally -- no per-call cost, runs F and G).
+# Only needed for src/rerank.py; the rest of the pipeline does not import these.
+# The CPU build of torch is sufficient and ~10x smaller than the CUDA default:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+sentence-transformers>=3.0
+torch>=2.0
+
+# Eval + reporting
+pyyaml>=6.0
+pandas>=2.2
+
+# Notebook execution (src/run_notebook.py)
+nbformat>=5.10
+nbclient>=0.10
+ipykernel>=6.29
+
+# Tracing / latency collection
+langsmith>=0.1

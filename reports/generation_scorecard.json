@@ -1,0 +1,524 @@
+{
+  "config": {
+    "retriever": "hybrid",
+    "strategy": "fixed",
+    "k": 20
+  },
+  "summary": {
+    "n": 19,
+    "exit_correct": 84.21052631578948,
+    "numeric_correct": 68.75,
+    "both_sides": 50.0,
+    "faithfulness": 1.0,
+    "hallucination_rate": 5.2631578947368425,
+    "invalid_citation_rate": 0.0,
+    "p50_ms": 2174.1957999765873,
+    "p95_ms": 5059.666200075299
+  },
+  "by_category": {
+    "numeric": {
+      "n": 4,
+      "exit_correct": 100.0,
+      "numeric_correct": 100.0,
+      "both_sides": NaN,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "invalid_citation_rate": 0.0,
+      "p50_ms": 1987.3184000025503,
+      "p95_ms": 3475.2317998791113
+    },
+    "temporal": {
+      "n": 3,
+      "exit_correct": 66.66666666666667,
+      "numeric_correct": 66.66666666666667,
+      "both_sides": NaN,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "invalid_citation_rate": 0.0,
+      "p50_ms": 2096.1844999110326,
+      "p95_ms": 2342.0429000398144
+    },
+    "trend": {
+      "n": 3,
+      "exit_correct": 100.0,
+      "numeric_correct": 33.333333333333336,
+      "both_sides": NaN,
+      "faithfulness": 1.0,
+      "hallucination_rate": 33.333333333333336,
+      "invalid_citation_rate": 0.0,
+      "p50_ms": 3805.6898998329416,
+      "p95_ms": 3860.0315999938175
+    },
+    "restatement": {
+      "n": 4,
+      "exit_correct": 50.0,
+      "numeric_correct": 50.0,
+      "both_sides": 25.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "invalid_citation_rate": 0.0,
+      "p50_ms": 2872.0973000163212,
+      "p95_ms": 5059.666200075299
+    },
+    "split": {
+      "n": 2,
+      "exit_correct": 100.0,
+      "numeric_correct": 100.0,
+      "both_sides": 100.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "invalid_citation_rate": 0.0,
+      "p50_ms": 3427.643250033725,
+      "p95_ms": 4201.121399994008
+    },
+    "unanswerable": {
+      "n": 3,
+      "exit_correct": 100.0,
+      "numeric_correct": 0.0,
+      "both_sides": NaN,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "invalid_citation_rate": 0.0,
+      "p50_ms": 1507.412000093609,
+      "p95_ms": 2350.404499913566
+    }
+  },
+  "questions": [
+    {
+      "qid": "q_numeric_01",
+      "category": "numeric",
+      "question": "What was NVIDIA's Data Center revenue in fiscal year 2026?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        12
+      ],
+      "invalid_citations": [],
+      "answer_text": "Data Center revenue for fiscal year 2026 was $193,737 million [12].",
+      "retrieval_ms": 1061.6673999466002,
+      "generation_ms": 1112.528400029987,
+      "found_figures": [
+        "193,737"
+      ]
+    },
+    {
+      "qid": "q_numeric_02",
+      "category": "numeric",
+      "question": "What was total revenue for fiscal 2026?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        9
+      ],
+      "invalid_citations": [],
+      "answer_text": "Revenue was $215,938 million [9].",
+      "retrieval_ms": 3017.7591999527067,
+      "generation_ms": 457.47259992640465,
+      "found_figures": [
+        "215,938"
+      ]
+    },
+    {
+      "qid": "q_numeric_03",
+      "category": "numeric",
+      "question": "How much revenue came from Networking in fiscal 2026?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        1,
+        6
+      ],
+      "invalid_citations": [],
+      "answer_text": "Revenue from Networking in fiscal 2026 was $31,376 million [6].\n\nThis figure is found in the \"Revenue by End Market\" table under the \"Networking\" line for the year ended January 25, 2026 [6]. While the Compute & Networking segment as a whole generated $193,479 million in revenue [1], the breakdown in passage [6] separates Compute ($162,361 million) from Networking ($31,376 million), summing to the total Data Center revenue of $193,737 million.",
+      "retrieval_ms": 397.5400000344962,
+      "generation_ms": 1402.9009999940172,
+      "found_figures": [
+        "31,376"
+      ]
+    },
+    {
+      "qid": "q_numeric_04",
+      "category": "numeric",
+      "question": "What was NVIDIA's Gaming revenue in fiscal 2025?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        8
+      ],
+      "invalid_citations": [],
+      "answer_text": "Gaming revenue for fiscal year 2025 was $11,350 million [8].\n\nThis figure is found in the table \"Revenue by End Market\" in the FY2025, Item 15 filing, which reports Gaming revenue as $11,350 million for the year ended January 26, 2025.",
+      "retrieval_ms": 789.2710000742227,
+      "generation_ms": 663.7939000502229,
+      "found_figures": [
+        "11,350"
+      ]
+    },
+    {
+      "qid": "q_temporal_01",
+      "category": "temporal",
+      "question": "How much did Data Center revenue grow from fiscal 2025 to fiscal 2026?",
+      "exit": "REFUSE",
+      "expected_exit": "ANSWER",
+      "exit_correct": false,
+      "numeric_correct": false,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        2,
+        4,
+        7,
+        9
+      ],
+      "invalid_citations": [],
+      "answer_text": "To calculate the growth in Data Center revenue from fiscal 2025 to fiscal 2026, we need the actual Data Center revenue figures for both years. However, the provided passages do not give the exact dollar amounts for Data Center revenue in fiscal 2025 or fiscal 2026.\n\nInstead, they provide percentage growth rates:\n\n- Data Center revenue for fiscal year 2025 was up 142% from fiscal year 2024 [4].\n- Data Center revenue for fiscal year 2026 was up 68% from a year ago [2].\n\nWe also know total company revenue:\n- Total revenue in fiscal 2025: $130,497 million [9].\n- Total revenue in fiscal 2026: $215,938 million [9].\n\nWhile we know Data Center was the primary driver of revenue growth [7], and that it represented the majority of revenue in fiscal 2026 [7], we do not have the exact Data Center revenue amounts for either year.\n\nTherefore, **the exact dollar amount of Data Center revenue growth from fiscal 2025 to fiscal 2026 cannot be calculated from the provided passages**.\n\nREFUSE \u2014 the passages do not contain the answer.",
+      "retrieval_ms": 487.2658000094816,
+      "generation_ms": 1854.7771000303328,
+      "found_figures": []
+    },
+    {
+      "qid": "q_temporal_02",
+      "category": "temporal",
+      "question": "What was total revenue in fiscal 2024?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        10,
+        18
+      ],
+      "invalid_citations": [],
+      "answer_text": "Revenue was $60,922 million in fiscal year 2024 [10].\n\nThis is confirmed in multiple passages:\n- The \"Fiscal Year 2024 Summary\" table in Item 7 reports revenue as $60,922 million [10].\n- The geographic revenue table in Item 15 also shows total revenue as $60,922 million for the year ended January 28, 2024 [18].\n\nNo restatement or conflicting figure for FY2024 total revenue appears in the provided passages. Therefore, the answer is:\n\n**Revenue was $60,922 million [10].**",
+      "retrieval_ms": 437.7837999491021,
+      "generation_ms": 1366.8018999742344,
+      "found_figures": [
+        "60,922"
+      ]
+    },
+    {
+      "qid": "q_temporal_03",
+      "category": "temporal",
+      "question": "What was NVIDIA's revenue in 2025?",
+      "exit": "CLARIFY",
+      "expected_exit": "CLARIFY",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        13
+      ],
+      "invalid_citations": [],
+      "answer_text": "CLARIFY \u2014 the question is ambiguous because \"2025\" could refer to calendar year 2025 or NVIDIA's fiscal year 2025.\n\n- If \"2025\" means **fiscal year 2025**, which ended on January 26, 2025, then NVIDIA's total revenue was **$130,497 million**. This is stated in the \"Revenue by Reportable Segments\" table in the FY2025 filing: \"Total\" revenue for the year ended January 26, 2025, was $130,497 million [13].\n\n- If \"2025\" means **calendar year 2025**, the provided filings do not contain a breakdown of revenue for the calendar year. NVIDIA\u2019s fiscal years do not align with calendar years. Fiscal year 2026 includes most of calendar 2025 (February 2025 through January 2026), but the exact calendar year 2025 figure cannot be derived from the given data.\n\nTherefore:\n- For **fiscal year 2025**: Revenue was $130,497 million [13].\n- For **calendar year 2025**: The passages do not contain the answer.",
+      "retrieval_ms": 385.21799992304295,
+      "generation_ms": 1710.9664999879897,
+      "found_figures": [
+        "2025",
+        "130,497"
+      ]
+    },
+    {
+      "qid": "q_trend_01",
+      "category": "trend",
+      "question": "Has NVIDIA's Data Center revenue growth accelerated or decelerated over the last three fiscal years?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": false,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        2,
+        6,
+        7
+      ],
+      "invalid_citations": [],
+      "answer_text": "NVIDIA's Data Center revenue growth has **decelerated** over the last three fiscal years.\n\nThe year-over-year revenue growth rates for Data Center are:\n\n- **Fiscal year 2024**: Data Center revenue grew **217%** from the prior year [2].\n- **Fiscal year 2025**: Data Center revenue grew **142%** from the prior year [6].\n- **Fiscal year 2026**: Data Center revenue grew **68%** from the prior year [7].\n\nThese figures show a clear deceleration in growth rate over the three-year period.",
+      "retrieval_ms": 2708.6045999312773,
+      "generation_ms": 1097.0852999016643,
+      "found_figures": []
+    },
+    {
+      "qid": "q_trend_02",
+      "category": "trend",
+      "question": "How has NVIDIA's gross margin changed across fiscal 2024, 2025 and 2026?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": false,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        15,
+        16,
+        18
+      ],
+      "invalid_citations": [],
+      "answer_text": "NVIDIA's gross margin decreased from fiscal 2024 to fiscal 2025 and then further declined from fiscal 2025 to fiscal 2026.\n\n- In fiscal 2024, the gross margin was 72.7% [16].\n- In fiscal 2025, the gross margin increased to 75.0%, up from 72.7% in fiscal 2024, primarily driven by a higher mix of Data Center revenue [16].\n- In fiscal 2026, the gross margin decreased to 71.1%, down from 75.0% in fiscal 2025, due to a business model transition from Hopper HGX systems to Blackwell full-scale datacenter solutions and a $4.5 billion charge associated with H20 excess inventory and purchase obligations [18].\n\nThus, the gross margin trend is:\n- Fiscal 2024: 72.7% [16]\n- Fiscal 2025: 75.0% [16]\n- Fiscal 2026: 71.1% [18]\n\nThe change from fiscal 2024 to 2025 was an increase of 2.3 percentage points, and from fiscal 2025 to 2026, a decrease of 3.9 percentage points [15].",
+      "retrieval_ms": 321.87410001643,
+      "generation_ms": 1584.2769000446424,
+      "found_figures": []
+    },
+    {
+      "qid": "q_trend_03",
+      "category": "trend",
+      "question": "Which end market has grown fastest over the three years covered?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [
+        "123,411"
+      ],
+      "citations": [
+        1,
+        3
+      ],
+      "invalid_citations": [],
+      "answer_text": "To determine which end market has grown fastest over the three years covered, we compare the revenue growth of each end market from FY2024 to FY2026 using the data in the tables from [1] (FY2026) and [3] (FY2025), which both cover overlapping three-year periods.\n\nThe three years covered in [1] are:\n- FY2026: ended Jan 25, 2026\n- FY2025: ended Jan 26, 2025\n- FY2024: ended Jan 28, 2024\n\nWe calculate the compound growth or total growth over this period for each end market.\n\nUsing data from [1]:\n\n| End Market | FY2024 | FY2025 | FY2026 | Growth (FY2024 \u2192 FY2026) |\n|------------|--------|--------|--------|----------------------------|\n| Data Center | 47,525 | 115,186 | 193,737 | (193,737 - 47,525) / 47,525 \u2248 307.7% |\n| Compute | 38,950 | 102,196 | 162,361 | (162,361 - 38,950) / 38,950 \u2248 316.8% |\n| Networking | 8,575 | 12,990 | 31,376 | (31,376 - 8,575) / 8,575 \u2248 265.9% |\n| Gaming | 10,447 | 11,350 | 16,042 | (16,042 - 10,447) / 10,447 \u2248 53.5% |\n| Professional Visualization | 1,553 | 1,878 | 3,191 | (3,191 - 1,553) / 1,553 \u2248 105.5% |\n| Automotive | 1,091 | 1,694 | 2,349 | (2,349 - 1,091) / 1,091 \u2248 115.3% |\n| OEM and Other | 306 | 389 | 619 | (619 - 306) / 306 \u2248 102.3% |\n\nCompute has the highest absolute growth from FY2024 to FY2026: from $38,950 million to $162,361 million, an increase of $123,411 million, or about 316.8%.\n\nHowever, note that \"Compute\" is a sub-segment of \"Data Center\" in some contexts. But in the table in [1",
+      "retrieval_ms": 344.98890000395477,
+      "generation_ms": 3515.0426999898627,
+      "found_figures": [
+        "47,525",
+        "115,186",
+        "193,737"
+      ]
+    },
+    {
+      "qid": "q_restate_01",
+      "category": "restatement",
+      "question": "What were NVIDIA's United States revenues in fiscal 2025?",
+      "exit": "CLARIFY",
+      "expected_exit": "ANSWER",
+      "exit_correct": false,
+      "numeric_correct": false,
+      "both_sides": false,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        1,
+        9
+      ],
+      "invalid_citations": [],
+      "answer_text": "CLARIFY \u2014 the question is ambiguous because the passages report two different figures for NVIDIA's United States revenues in fiscal 2025 due to a reclassification of revenue by geography.\n\nIn the FY2025 filing [1], revenue from sales to customers outside the United States accounted for 53% of total revenue. This implies that 47% of revenue came from the United States (based on customer billing location). However, in the FY2026 filing [9], NVIDIA changed its method to report revenue based on the location of customers' headquarters, and under this new basis, revenue from sales to customers headquartered outside the United States accounted for 41% of total revenue in fiscal 2025, meaning 59% came from the United States.\n\nThe FY2026 filing explicitly states: \"In the third quarter of fiscal year 2026, we changed to revenue based upon the location of our customers' headquarters as we believe it provides a better representation of the geographic profile of our revenue. Prior period information has been recast to reflect this change\" [9].\n\nTherefore:\n- Under the **billing location** method (FY2025 filing): U.S. revenue was **47%** of total revenue [1].\n- Under the **headquarters location** method (FY2026 filing, restated): U.S. revenue was **59%** of total revenue [9].\n\nThe absolute dollar amount is not provided in the passages, so only the percentages can be reported. The difference arises from a change in reporting methodology.",
+      "retrieval_ms": 379.04959998559207,
+      "generation_ms": 1702.9687999747694,
+      "found_figures": []
+    },
+    {
+      "qid": "q_restate_02",
+      "category": "restatement",
+      "question": "How much revenue did NVIDIA attribute to China, including Hong Kong, in fiscal 2025?",
+      "exit": "REFUSE",
+      "expected_exit": "ANSWER",
+      "exit_correct": false,
+      "numeric_correct": false,
+      "both_sides": false,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        1,
+        2,
+        15,
+        17
+      ],
+      "invalid_citations": [],
+      "answer_text": "REFUSE \u2014 the passages provided do not contain the amount of revenue NVIDIA attributed to China, including Hong Kong, in fiscal 2025.\n\nWhile several passages mention China and Hong Kong in the context of geopolitical risks, export restrictions, and licensing (e.g., [15], [17]), and one passage notes that China represented a \"mid-single digit percentage\" of Data Center revenue in the fourth quarter of fiscal year 2024 ([2]), none provide the total revenue from China including Hong Kong for the full fiscal year 2025.\n\nAdditionally, although [1] states that 53% of revenue in fiscal year 2025 came from outside the United States, it does not break down revenue by country or region beyond mentioning Singapore\u2019s billing location distortion. No passage gives a specific revenue figure or percentage for China including Hong Kong for FY2025.",
+      "retrieval_ms": 327.3338000290096,
+      "generation_ms": 1286.2361000152305,
+      "found_figures": []
+    },
+    {
+      "qid": "q_restate_03",
+      "category": "restatement",
+      "question": "What was the total operating income by reportable segment for fiscal 2025?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": true,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "invalid_citations": [],
+      "answer_text": "The total operating income by reportable segment for fiscal 2025 is reported differently in two filings due to restatements.\n\nIn the **FY2026** filing, the total operating income by reportable segment for fiscal 2025 is listed as **$87,960 million**. This version excludes the \"All Other\" category and includes only the Compute & Networking and Graphics segments:\n\n> \"Total | 139,297 | 87,960 | 51,337 | 58\" [1]  \n> \"Operating income | 82,875 | 5,085 | 87,960\" [5]\n\nIn the **FY2025** filing, the total operating income by reportable segment for fiscal 2025 is listed as **$81,453 million**, which includes an \"All Other\" category with a loss of $6,507 million:\n\n> \"Total | 81,453 | 32,972 | 48,481 | 147\" [2]  \n> \"Operating income (loss) | 82,875 | 5,085 | (6,507) | 81,453\" [4]\n\nThe difference of $6,507 million is due to the inclusion of the \"All Other\" segment in the FY2025 filing but not in the FY2026 presentation of segment operating income. The FY2026 filing reconciles segment operating income to consolidated income before income tax and shows **$87,960 million** as segment operating income for fiscal 2025, consistent with the sum of Compute & Networking and Graphics only [3].\n\nTherefore:\n\n- **$87,960 million** is the total reportable segment operating income (Compute & Networking and Graphics only) for fiscal 2025, as presented in the FY2026 filing [1][5][3].\n- **$81,453 million** is the consolidated operating income, including the \"All Other\" segment, as reported in the FY2025 filing [2][4][9].\n\nSince the question asks for \"total operating income by reportable segment,\" the appropriate figure is the sum of the reportable segments (Compute & Networking and Graphics), which is **$87,960 million** [1].\n\nAnswer: **$87,960 million [1]**.",
+      "retrieval_ms": 669.5810999954119,
+      "generation_ms": 2992.595100076869,
+      "found_figures": [
+        "87,960",
+        "81,453"
+      ]
+    },
+    {
+      "qid": "q_restate_04",
+      "category": "restatement",
+      "question": "What was the carrying value of patents and licensed technology at the end of fiscal 2025?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": false,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        1,
+        2,
+        7
+      ],
+      "invalid_citations": [],
+      "answer_text": "The carrying value of patents and licensed technology at the end of fiscal 2025 is reported in two different filings with differing values due to restatements or reclassifications.\n\nIn the FY2026 filing (which reports balances as of January 26, 2025, the end of fiscal 2025), the net carrying amount of patents and licensed technology is $230 million [1].\n\nIn the FY2025 filing (which also reports balances as of January 26, 2025), the net carrying amount of patents and licensed technology is $171 million [2].\n\nThese values differ because the FY2026 filing includes updated or restated figures, possibly due to subsequent acquisitions or reclassifications (e.g., the $2.5 billion developed technology intangible asset from the Groq license agreement noted in [7], though it is unclear if this affects the \"Patents and licensed technology\" line specifically).\n\nPer the RESTATEMENT RULE, both values must be reported:\n\n- $230 million as reported in the FY2026 filing [1]\n- $171 million as reported in the FY2025 filing [2]\n\nThe discrepancy may stem from the inclusion of new intangible assets or reclassification in the later filing, but the passages do not explicitly explain the difference.\n\nTherefore, the carrying value of patents and licensed technology at the end of fiscal 2025 is **$230 million [1] or $171 million [2]**, depending on the filing.",
+      "retrieval_ms": 1684.719800017774,
+      "generation_ms": 3374.9464000575244,
+      "found_figures": [
+        "230"
+      ]
+    },
+    {
+      "qid": "q_split_01",
+      "category": "split",
+      "question": "What was NVIDIA's basic earnings per share in fiscal 2024?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": true,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        5,
+        7,
+        8,
+        11,
+        15
+      ],
+      "invalid_citations": [],
+      "answer_text": "NVIDIA's basic earnings per share in fiscal 2024 is reported with two different values across the filings due to the 10-for-1 stock split in June 2024.\n\n- In the FY2024 filing, before the stock split adjustment, the basic earnings per share was $12.05 [8].\n- In the FY2025 and FY2026 filings, which retroactively adjusted all per-share amounts for the 10-for-1 stock split, the basic earnings per share for fiscal 2024 is $1.21 [5][7][11][15].\n\nTherefore, both values are correct as published in their respective filings, with the difference due to the stock split restatement.",
+      "retrieval_ms": 2546.448400011286,
+      "generation_ms": 1654.672999982722,
+      "found_figures": [
+        "1.21",
+        "12.05"
+      ]
+    },
+    {
+      "qid": "q_split_02",
+      "category": "split",
+      "question": "What were NVIDIA's diluted weighted average shares outstanding in fiscal 2024?",
+      "exit": "ANSWER",
+      "expected_exit": "ANSWER",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": true,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        2,
+        4,
+        6
+      ],
+      "invalid_citations": [],
+      "answer_text": "The passages provide two different values for NVIDIA's diluted weighted average shares outstanding in fiscal 2024 due to a restatement caused by the 10-for-1 stock split.\n\n- In the FY2024 filing [6], the diluted weighted average shares outstanding for fiscal 2024 is reported as **2,494 million**.\n- In the FY2025 and FY2026 filings [4] and [2], which restate prior-year figures to reflect the 10-for-1 stock split, the diluted weighted average shares outstanding for fiscal 2024 is **24,940 million**.\n\nThe difference arises because the FY2025 and FY2026 filings retroactively adjusted all share and per-share amounts to reflect the stock split, while the FY2024 filing reports pre-split amounts.\n\nTherefore:\n- 2,494 million shares (pre-split) [6]\n- 24,940 million shares (post-split restated) [4][2]\n\nBoth figures are correct as reported in their respective filings, with the latter reflecting the restatement for the stock split.",
+      "retrieval_ms": 312.0753000257537,
+      "generation_ms": 2342.089800047688,
+      "found_figures": [
+        "24,940",
+        "2,494"
+      ]
+    },
+    {
+      "qid": "q_unans_01",
+      "category": "unanswerable",
+      "question": "What is NVIDIA's projected Data Center revenue for fiscal year 2027?",
+      "exit": "REFUSE",
+      "expected_exit": "REFUSE",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [],
+      "invalid_citations": [],
+      "answer_text": "REFUSE \u2014 the passages do not contain the answer.\n\nThe question asks for NVIDIA's **projected** Data Center revenue for **fiscal year 2027**. The provided passages contain historical Data Center revenue figures for fiscal years 2024, 2025, and 2026, but they do not include any forward-looking projections or guidance for fiscal year 2027.\n\nAdditionally, per the instructions, forward-looking guidance is not included in 10-K filings, and the passages confirm this by referencing prior periods and historical performance only.\n\nTherefore, the requested projection is not present in the filings provided.",
+      "retrieval_ms": 368.7507000286132,
+      "generation_ms": 1138.6613000649959,
+      "found_figures": []
+    },
+    {
+      "qid": "q_unans_02",
+      "category": "unanswerable",
+      "question": "How much revenue did AMD report in fiscal 2025?",
+      "exit": "REFUSE",
+      "expected_exit": "REFUSE",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [],
+      "invalid_citations": [],
+      "answer_text": "REFUSE \u2014 the passages provided do not contain the answer.\n\nThe question asks for AMD's revenue in fiscal 2025, but all the passages are from NVIDIA's SEC filings and discuss only NVIDIA's financial results. There is no mention of AMD or its revenue in any of the provided passages.",
+      "retrieval_ms": 321.8551999889314,
+      "generation_ms": 795.4145000549033,
+      "found_figures": []
+    },
+    {
+      "qid": "q_unans_03",
+      "category": "unanswerable",
+      "question": "What did NVIDIA's CEO earn in total compensation in fiscal 2026?",
+      "exit": "REFUSE",
+      "expected_exit": "REFUSE",
+      "exit_correct": true,
+      "numeric_correct": true,
+      "both_sides": null,
+      "faithfulness": 1.0,
+      "hallucinated": [],
+      "citations": [
+        1,
+        7,
+        9,
+        11
+      ],
+      "invalid_citations": [],
+      "answer_text": "REFUSE \u2014 the passages provided do not contain the total compensation for NVIDIA's CEO in fiscal 2026.\n\nWhile Passage [9] identifies Jen-Hsun Huang as the CEO and provides biographical information, none of the passages include the Summary Compensation Table or any specific figures for executive compensation for fiscal year 2026. Passages [1], [7], and [11] reference that information about executive compensation will be included in the respective proxy statements (e.g., \"Information regarding ownership of NVIDIA securities...will be contained in our 2026 Proxy Statement\"), but the actual compensation figures are not disclosed in the provided excerpts.\n\nExecutive compensation details, including total compensation for the CEO, are typically found in the Proxy Statement (Def 14A), not in the 10-K, unless explicitly included. Since the question asks for a specific figure not present in the provided 10-K passages, the answer cannot be determined from the given information.",
+      "retrieval_ms": 408.5797999287024,
+      "generation_ms": 1941.8246999848634,
+      "found_figures": []
+    }
+  ]
+}
